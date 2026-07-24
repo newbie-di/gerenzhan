@@ -3,6 +3,7 @@ import { motion, useScroll, useSpring } from "framer-motion";
 import { About } from "./components/About.jsx";
 import { BorderGlowSystem } from "./components/BorderGlowSystem.jsx";
 import { Contact } from "./components/Contact.jsx";
+import { CursorFluidTrail } from "./components/CursorFluidTrail.jsx";
 import { Hero } from "./components/Hero.jsx";
 import { Projects } from "./components/Projects.jsx";
 import { Strengths } from "./components/Strengths.jsx";
@@ -62,6 +63,7 @@ export function App() {
   return (
     <>
       <BorderGlowSystem />
+      <CursorFluidTrail />
       <motion.div className="scroll-progress" style={{ scaleX: progress }} aria-hidden="true" />
       <Hero />
       <main>

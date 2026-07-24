@@ -92,6 +92,17 @@ img {
   outline-offset: 4px;
 }
 
+.cursor-fluid-trail {
+  position: fixed;
+  z-index: 950;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  mix-blend-mode: screen;
+  opacity: 0.92;
+  pointer-events: none;
+}
+
 [data-border-glow] {
   --border-glow-alpha: 0;
   --border-glow-x: 50%;
@@ -1922,6 +1933,10 @@ img {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .cursor-fluid-trail {
+    display: none;
+  }
+
   html {
     scroll-behavior: auto;
   }
