@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import {
   BrainCircuit,
   Palette,
@@ -8,6 +8,7 @@ import {
   WandSparkles,
 } from "lucide-react";
 import { strengths } from "../data/portfolioData.js";
+import { SectionTransition } from "./SectionTransition.jsx";
 import { SectionTitle } from "./SectionTitle.jsx";
 
 const icons = {
@@ -20,8 +21,11 @@ const icons = {
 };
 
 export function Strengths() {
+  const reduceMotion = useReducedMotion();
+
   return (
     <section id="strengths" className="section strengths">
+      <SectionTransition />
       <div className="container">
         <SectionTitle
           index="03"
@@ -33,8 +37,8 @@ export function Strengths() {
         <motion.div
           className="strengths__grid"
           data-border-glow="box"
-          initial="hidden"
-          whileInView="visible"
+          initial={reduceMotion ? false : "hidden"}
+          whileInView={reduceMotion ? undefined : "visible"}
           viewport={{ once: true, amount: 0.15 }}
           variants={{ visible: { transition: { staggerChildren: 0.07 } } }}
         >
@@ -46,8 +50,8 @@ export function Strengths() {
                 className="strength-card"
                 data-border-glow="box"
                 variants={{
-                  hidden: { opacity: 0, y: 24 },
-                  visible: { opacity: 1, y: 0 },
+                  hidden: { opacity: 0, y: 22, clipPath: "inset(8% 0 8% 0)" },
+                  visible: { opacity: 1, y: 0, clipPath: "inset(0% 0 0% 0)" },
                 }}
                 transition={{ duration: 0.58, ease: [0.22, 1, 0.36, 1] }}
               >

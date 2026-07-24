@@ -1,12 +1,16 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, GitFork, Mail, MapPin } from "lucide-react";
 import profileVisual from "../assets/images/profile/profile-abstract.webp";
 import { profile, stats } from "../data/portfolioData.js";
+import { SectionTransition } from "./SectionTransition.jsx";
 import { SectionTitle } from "./SectionTitle.jsx";
 
 export function About() {
+  const reduceMotion = useReducedMotion();
+
   return (
     <section id="about" className="section about">
+      <SectionTransition />
       <div className="container">
         <SectionTitle
           index="01"
@@ -19,8 +23,8 @@ export function About() {
           <motion.figure
             className="about__portrait"
             data-border-glow="box"
-            initial={{ opacity: 0, scale: 0.97 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={reduceMotion ? false : { opacity: 0, x: -28, scale: 0.975 }}
+            whileInView={reduceMotion ? undefined : { opacity: 1, x: 0, scale: 1 }}
             viewport={{ once: true, amount: 0.35 }}
             transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
           >
@@ -37,8 +41,8 @@ export function About() {
 
           <motion.div
             className="about__content"
-            initial={{ opacity: 0, y: 28 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={reduceMotion ? false : { opacity: 0, x: 28 }}
+            whileInView={reduceMotion ? undefined : { opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.72, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
           >
@@ -74,8 +78,8 @@ export function About() {
 
         <motion.div
           className="stats"
-          initial="hidden"
-          whileInView="visible"
+          initial={reduceMotion ? false : "hidden"}
+          whileInView={reduceMotion ? undefined : "visible"}
           viewport={{ once: true, amount: 0.45 }}
           variants={{
             hidden: {},

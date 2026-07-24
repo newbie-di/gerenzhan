@@ -1,42 +1,83 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUp, ArrowUpRight, ContactRound, GitFork, Mail } from "lucide-react";
 import spaceBackground from "../assets/images/hero/hero-space-background.webp";
 import { profile, socialLinks } from "../data/portfolioData.js";
+import { SectionTransition } from "./SectionTransition.jsx";
 
 const icons = { mail: Mail, github: GitFork, linkedin: ContactRound };
 
 export function Contact() {
+  const reduceMotion = useReducedMotion();
+  const lineReveal = {
+    hidden: { opacity: 0, y: "86%", rotate: 1.2 },
+    visible: { opacity: 1, y: 0, rotate: 0 },
+  };
+
   return (
     <section id="contact" className="contact">
       <img className="contact__background" src={spaceBackground} alt="" aria-hidden="true" />
       <div className="contact__shade" />
+      <SectionTransition />
 
       <div className="contact__inner container">
         <motion.div
           className="contact__content"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={reduceMotion ? false : "hidden"}
+          whileInView={reduceMotion ? undefined : "visible"}
           viewport={{ once: true, amount: 0.35 }}
-          transition={{ duration: 0.78, ease: [0.22, 1, 0.36, 1] }}
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.11 } },
+          }}
         >
-          <span className="eyebrow">04 / CONTACT / 保持连接</span>
+          <motion.span
+            className="eyebrow"
+            variants={{ hidden: { opacity: 0, x: -16 }, visible: { opacity: 1, x: 0 } }}
+            transition={{ duration: 0.52, ease: [0.22, 1, 0.36, 1] }}
+          >
+            04 / CONTACT / 保持连接
+          </motion.span>
           <h2>
-            LET&apos;S BUILD
-            <em>SOMETHING WITH AI.</em>
+            <span className="contact__title-mask">
+              <motion.span
+                variants={lineReveal}
+                transition={{ duration: 0.86, ease: [0.22, 1, 0.36, 1] }}
+              >
+                LET&apos;S BUILD
+              </motion.span>
+            </span>
+            <span className="contact__title-mask">
+              <motion.em
+                variants={lineReveal}
+                transition={{ duration: 0.86, ease: [0.22, 1, 0.36, 1] }}
+              >
+                SOMETHING WITH AI.
+              </motion.em>
+            </span>
           </h2>
-          <p>我正在探索 AI 领域，也欢迎有趣的项目合作与交流。</p>
+          <motion.p
+            variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }}
+            transition={{ duration: 0.58, ease: [0.22, 1, 0.36, 1] }}
+          >
+            我正在探索 AI 领域，也欢迎有趣的项目合作与交流。
+          </motion.p>
 
-          <a
+          <motion.a
             className="contact__mail"
             data-border-glow="top-bottom"
             href={`mailto:${profile.email}`}
+            variants={{
+              hidden: { opacity: 0, clipPath: "inset(0 100% 0 0)" },
+              visible: { opacity: 1, clipPath: "inset(0 0% 0 0)" },
+            }}
+            transition={{ duration: 0.78, ease: [0.22, 1, 0.36, 1] }}
           >
             <span>
               <small>START A CONVERSATION</small>
               {profile.email}
             </span>
             <ArrowUpRight size={28} />
-          </a>
+          </motion.a>
         </motion.div>
 
         <div className="contact__footer" data-border-glow="top">

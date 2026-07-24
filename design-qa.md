@@ -137,6 +137,69 @@ No actionable P0/P1/P2 differences remain for the requested border interaction.
 
 final result: passed
 
+## July 24 Section Motion Upgrade
+
+### Comparison Target
+
+- Source visual truth: the shipped portfolio itself, represented by `design-reference/content-update/automation-project-updated.png` and `design-reference/content-update/contact-updated.png`
+- Implementation route: `http://localhost:4173/`
+- Browser-rendered implementation: `design-reference/motion-upgrade/mobile-project-final.png` and `design-reference/motion-upgrade/mobile-contact-final.png`
+- Combined same-size comparison input: `design-reference/motion-upgrade/comparison-board-final.png`
+- Source screenshot pixels: `535 × 859` for each compared section
+- Implementation screenshot pixels: `535 × 859` for each compared section
+- CSS viewport during interaction QA: `543 × 872`, `devicePixelRatio: 2`; the in-app browser excluded its scrollbar/chrome area from the captured page pixels
+- Compared state: settled Project and Contact sections after their one-time entrance sequences
+
+### Full-view and Focused Evidence
+
+- Full-view, same-input baseline/implementation comparison: `design-reference/motion-upgrade/comparison-board-final.png`
+- About final state: `design-reference/motion-upgrade/mobile-about-final-v2.png`
+- Project transition/final states: `design-reference/motion-upgrade/mobile-project-mid.png`, `mobile-project-final.png`
+- Strengths transition/final states: `design-reference/motion-upgrade/mobile-strengths-mid.png`, `mobile-strengths-final.png`
+- Contact transition/final states: `design-reference/motion-upgrade/mobile-contact-mid.png`, `mobile-contact-final.png`
+
+The combined board confirms that the settled typography, imagery, content density, palette and spacing remain aligned with the shipped design. Focused mid/final captures are required because the requested change is temporal: they show that the added motion is visible during entry and fully resolves without leaving transformed or faded content behind.
+
+### Required Fidelity Surfaces
+
+- Fonts and typography: Cormorant Garamond remains the only display face and Manrope remains the UI/body face. Section titles reveal by whole line rather than per character, preserving Chinese wrapping, letter spacing, optical weight and hierarchy. The first About implementation initially left its large title below the mask; that trigger threshold was corrected and the final title resolves at full opacity with no transform.
+- Spacing and layout rhythm: all existing grids, card sizes, section padding, mobile stacks and content order remain unchanged. The new section divider is absolutely positioned and the transitions never change layout dimensions. The same-size Project and Contact comparison shows no material density or spacing drift.
+- Colors and visual tokens: the transition line reuses the existing cyan and violet tokens at low opacity. No new neon family, glass surface, shadow system or persistent decorative layer was added.
+- Image quality and asset fidelity: all Hero, portrait, project and star-field assets remain unchanged and retain their original crop/sharpness. The upgrade introduces no replacement image, custom SVG illustration or CSS-drawn asset.
+- Copy and content: all profile, automation project, strengths, contact and email copy remains unchanged.
+- Responsiveness and accessibility: browser checks at `543 × 872` reported no horizontal overflow. Coarse layouts retain short entrances without pointer-dependent behavior. `prefers-reduced-motion` renders the content statically, hides the moving beam and disables hover transforms. Semantic headings, links and focus behavior remain intact.
+- Performance: section motion uses only `transform`, `opacity` and `clip-path`; animations are one-time `whileInView` sequences with short stagger windows. No scroll listener, new RAF loop or layout property animation was added.
+
+### Primary Interactions Tested
+
+- About title, portrait, content and statistics resolve in sequence with no hidden title or horizontal overflow.
+- Project imagery and copy enter from opposite directions and settle to `opacity: 1`, `transform: none`, and `clip-path: inset(0)`.
+- Strength cards use a short stagger and settle to full opacity with no residual clipping.
+- Contact eyebrow, two display lines, supporting copy and email rule reveal in order and settle without changing the full-screen composition.
+- Mid/final screenshots confirm that the transitions remain visible but short enough not to delay reading.
+- The current route rendered every tested section and no `http://localhost:4173` application error appeared in the captured browser log output; errors from an isolated temporary baseline server were excluded from the current-build assessment.
+- `npm run build` and `git diff --check` passed.
+
+### Comparison History
+
+#### Motion pass 1 — P1 masked About title could not trigger
+
+- Finding: the initial `72%` vertical offset moved too much of the large mobile heading outside its overflow mask, so the element could never satisfy a `55%` intersection threshold and remained invisible.
+- Fix: kept the same cinematic offset but lowered the title observer threshold to `12%`, allowing the reveal to begin as soon as the mask enters the viewport.
+- Post-fix evidence: `mobile-about-final-v2.png`; computed title state was `opacity: 1` and `transform: none`.
+
+#### Motion pass 2 — settled-state fidelity and responsive verification
+
+- Compared representative shipped and upgraded Project/Contact states at identical captured dimensions.
+- Verified About, Projects, Strengths and Contact transition/final pairs and confirmed no horizontal overflow.
+- No actionable P0/P1/P2 differences remain. The intentional changes are limited to entry timing, masking and the fine section sweep.
+
+### Follow-up Polish
+
+- [P3] A future desktop-only pass could add very light scroll-linked image drift, but it is intentionally omitted now to keep Hero motion dominant and scrolling consistently smooth.
+
+final result: passed
+
 ## July 24 Navigation Control Placement Update
 
 ### Comparison Target

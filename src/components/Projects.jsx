@@ -1,11 +1,15 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, GitFork } from "lucide-react";
 import { projects } from "../data/portfolioData.js";
+import { SectionTransition } from "./SectionTransition.jsx";
 import { SectionTitle } from "./SectionTitle.jsx";
 
 export function Projects() {
+  const reduceMotion = useReducedMotion();
+
   return (
     <section id="projects" className="section projects">
+      <SectionTransition />
       <div className="container">
         <SectionTitle
           index="02"
@@ -19,16 +23,32 @@ export function Projects() {
               id={project.id}
               key={project.id}
               className={`project ${index % 2 ? "project--reverse" : ""}`}
-              initial={{ opacity: 0, y: 36 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={reduceMotion ? false : "hidden"}
+              whileInView={reduceMotion ? undefined : "visible"}
               viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
+              variants={{
+                hidden: {},
+                visible: { transition: { staggerChildren: 0.12 } },
+              }}
             >
-              <a
+              <motion.a
                 className="project__visual"
                 data-border-glow="box"
                 href={project.demoUrl}
                 aria-label={`查看${project.title}`}
+                variants={{
+                  hidden: {
+                    opacity: 0,
+                    x: index % 2 ? 34 : -34,
+                    clipPath: "inset(0 12% 0 12%)",
+                  },
+                  visible: {
+                    opacity: 1,
+                    x: 0,
+                    clipPath: "inset(0 0% 0 0%)",
+                  },
+                }}
+                transition={{ duration: 0.82, ease: [0.22, 1, 0.36, 1] }}
               >
                 <img src={project.image} alt={project.imageAlt} />
                 <span className="project__visual-index" data-border-glow="box">
@@ -37,9 +57,16 @@ export function Projects() {
                 <span className="project__visual-action" data-border-glow="box">
                   查看项目 <ArrowUpRight size={18} />
                 </span>
-              </a>
+              </motion.a>
 
-              <div className="project__content">
+              <motion.div
+                className="project__content"
+                variants={{
+                  hidden: { opacity: 0, x: index % 2 ? -26 : 26 },
+                  visible: { opacity: 1, x: 0 },
+                }}
+                transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
+              >
                 <span className="eyebrow">{project.type}</span>
                 <h3>{project.title}</h3>
                 <p className="project__summary">{project.summary}</p>
@@ -66,7 +93,7 @@ export function Projects() {
                     <GitFork size={16} /> GitHub
                   </a>
                 </div>
-              </div>
+              </motion.div>
             </motion.article>
           ))}
         </div>
