@@ -24,7 +24,7 @@ export function Contact() {
             LET&apos;S BUILD
             <em>SOMETHING WITH AI.</em>
           </h2>
-          <p>我正在寻找 AI 相关的工作机会，也欢迎有趣的项目合作与交流。</p>
+          <p>我正在探索 AI 领域，也欢迎有趣的项目合作与交流。</p>
 
           <a
             className="contact__mail"

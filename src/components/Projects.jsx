@@ -11,7 +11,6 @@ export function Projects() {
           index="02"
           eyebrow="SELECTED WORK / 精选项目"
           title="把 AI 的可能性，做成可以感知的体验。"
-          description="这些是目前用于展示方法与思考的占位项目，结构已经为后续真实案例预留。"
         />
 
         <div className="projects__list">

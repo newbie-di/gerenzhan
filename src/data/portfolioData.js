@@ -1,4 +1,4 @@
-import resumeCover from "../assets/images/projects/project-resume-ai.webp";
+import automationCover from "../assets/images/projects/project-resume-ai.webp";
 import dailyBriefCover from "../assets/images/projects/project-daily-brief.webp";
 import learningCover from "../assets/images/projects/project-learning-generator.webp";
 
@@ -10,9 +10,9 @@ export const profile = {
   about:
     "我喜欢把新的 AI 能力拆解成可以理解、可以体验、也真正有用的产品。通过持续学习与项目实践，我正在建立从需求理解、内容表达，到原型落地与迭代的完整能力。",
   quote: "不追逐每一个热点，更在意技术最终能为人创造什么。",
-  email: "your-email@example.com",
+  email: "jd763540586@163.com",
   location: "中国",
-  status: "正在寻找 AI 相关工作机会",
+  status: "正在探索 AI 领域",
   github: "https://github.com/yourname",
   githubLabel: "github.com/yourname",
   availability: "OPEN TO OPPORTUNITIES",
@@ -27,16 +27,16 @@ export const stats = [
 
 export const projects = [
   {
-    id: "resume-ai",
+    id: "automation-workflow",
     index: "01",
-    title: "AI 简历优化助手",
-    type: "AI PRODUCT / CAREER TECH",
+    title: "AI 自动化工作流助手",
+    type: "AUTOMATION / AI WORKFLOW",
     summary:
-      "分析职位描述与简历内容，定位关键词差距，并把建议整理成可执行的修改清单。",
-    technologies: ["React", "AI Workflow", "Prompt Design"],
-    highlight: "从职位意图到简历表达，建立清晰的匹配路径。",
-    image: resumeCover,
-    imageAlt: "AI 简历优化助手的抽象项目视觉",
+      "连接表单、邮件、表格与 AI 模型，将重复操作编排成可复用、可追踪的自动化流程。",
+    technologies: ["Workflow Automation", "API Integration", "AI Agent"],
+    highlight: "从触发条件到执行结果，搭建清晰可靠的自动化路径。",
+    image: automationCover,
+    imageAlt: "AI 自动化工作流助手的抽象项目视觉",
     demoUrl: "#contact",
     repoUrl: "https://github.com/yourname",
   },

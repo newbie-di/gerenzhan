@@ -20,3 +20,5 @@ When implementing from a selected generated mock, treat that image as the source
 - Keep the global pointer trail visually clean: soft fluid volume is allowed, but do not draw distinct outer elliptical or ring-shaped light contours around turns.
 - Keep the purple fluid pointer trail subdued at roughly `0.74` global opacity so it supports the page without competing with text or Hero imagery.
 - In the desktop navigation, the Hero pause/play control must appear immediately after the “联系” link; it must never overlap or visually split the navigation labels. Keep the pause/play and menu controls together on responsive layouts.
+- The first featured project is an AI automation workflow tool, not a resume optimizer. The Projects intro should not include placeholder-project disclaimer copy.
+- Contact copy should say JD is exploring the AI field, and the canonical public email is `jd763540586@163.com`.
