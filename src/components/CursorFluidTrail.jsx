@@ -86,19 +86,6 @@ export function CursorFluidTrail() {
         context.arc(eddy.x, eddy.y, radius, 0, TAU);
         context.fill();
         context.restore();
-
-        context.save();
-        context.translate(eddy.x, eddy.y);
-        context.rotate(eddy.angle + eddy.spin * (1 - eddy.life));
-        context.scale(1.42, 0.7);
-        context.strokeStyle = `rgba(181, 116, 255, ${0.12 * easedLife})`;
-        context.lineWidth = Math.max(1.5, radius * 0.055);
-        context.shadowBlur = 18;
-        context.shadowColor = `rgba(142, 66, 255, ${0.28 * easedLife})`;
-        context.beginPath();
-        context.arc(0, 0, radius * 0.64, -Math.PI * 0.88, Math.PI * 0.84);
-        context.stroke();
-        context.restore();
       });
 
       context.restore();
