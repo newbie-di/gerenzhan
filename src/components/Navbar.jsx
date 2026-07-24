@@ -32,7 +32,10 @@ export function Navbar({ paused, onTogglePause }) {
   const closeMenu = () => setMenuOpen(false);
 
   return (
-    <header className={`navbar ${scrolled ? "navbar--scrolled" : ""}`}>
+    <header
+      className={`navbar ${scrolled ? "navbar--scrolled" : ""}`}
+      data-border-glow="bottom"
+    >
       <div className="navbar__inner">
         <a className="navbar__brand" href="#home" aria-label="返回首页">
           JD<span>.</span>
@@ -53,6 +56,7 @@ export function Navbar({ paused, onTogglePause }) {
         <div className="navbar__actions">
           <button
             className="icon-button navbar__motion-toggle"
+            data-border-glow="box"
             type="button"
             onClick={onTogglePause}
             aria-label={paused ? "播放首屏动画" : "暂停首屏动画"}
@@ -62,6 +66,7 @@ export function Navbar({ paused, onTogglePause }) {
           </button>
           <button
             className="icon-button navbar__menu-button"
+            data-border-glow="box"
             type="button"
             onClick={() => setMenuOpen((open) => !open)}
             aria-label={menuOpen ? "关闭导航菜单" : "打开导航菜单"}
@@ -72,10 +77,18 @@ export function Navbar({ paused, onTogglePause }) {
         </div>
       </div>
 
-      <div className={`mobile-menu ${menuOpen ? "mobile-menu--open" : ""}`}>
+      <div
+        className={`mobile-menu ${menuOpen ? "mobile-menu--open" : ""}`}
+        data-border-glow="left"
+      >
         <nav aria-label="移动端导航">
           {navItems.map((item, index) => (
-            <a key={item.href} href={item.href} onClick={closeMenu}>
+            <a
+              key={item.href}
+              href={item.href}
+              data-border-glow="bottom"
+              onClick={closeMenu}
+            >
               <span>0{index + 1}</span>
               {item.label}
             </a>

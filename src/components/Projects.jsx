@@ -25,10 +25,17 @@ export function Projects() {
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
             >
-              <a className="project__visual" href={project.demoUrl} aria-label={`查看${project.title}`}>
+              <a
+                className="project__visual"
+                data-border-glow="box"
+                href={project.demoUrl}
+                aria-label={`查看${project.title}`}
+              >
                 <img src={project.image} alt={project.imageAlt} />
-                <span className="project__visual-index">PROJECT / {project.index}</span>
-                <span className="project__visual-action">
+                <span className="project__visual-index" data-border-glow="box">
+                  PROJECT / {project.index}
+                </span>
+                <span className="project__visual-action" data-border-glow="box">
                   查看项目 <ArrowUpRight size={18} />
                 </span>
               </a>
@@ -37,17 +44,26 @@ export function Projects() {
                 <span className="eyebrow">{project.type}</span>
                 <h3>{project.title}</h3>
                 <p className="project__summary">{project.summary}</p>
-                <p className="project__highlight">{project.highlight}</p>
+                <p className="project__highlight" data-border-glow="left">
+                  {project.highlight}
+                </p>
                 <ul className="project__tech" aria-label="使用技术">
                   {project.technologies.map((technology) => (
-                    <li key={technology}>{technology}</li>
+                    <li key={technology} data-border-glow="box">
+                      {technology}
+                    </li>
                   ))}
                 </ul>
                 <div className="project__actions">
-                  <a href={project.demoUrl}>
+                  <a href={project.demoUrl} data-border-glow="bottom">
                     项目交流 <ArrowUpRight size={16} />
                   </a>
-                  <a href={project.repoUrl} target="_blank" rel="noreferrer">
+                  <a
+                    href={project.repoUrl}
+                    data-border-glow="bottom"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     <GitFork size={16} /> GitHub
                   </a>
                 </div>

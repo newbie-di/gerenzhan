@@ -32,6 +32,7 @@ export function Strengths() {
 
         <motion.div
           className="strengths__grid"
+          data-border-glow="box"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.15 }}
@@ -43,6 +44,7 @@ export function Strengths() {
               <motion.article
                 key={strength.id}
                 className="strength-card"
+                data-border-glow="box"
                 variants={{
                   hidden: { opacity: 0, y: 24 },
                   visible: { opacity: 1, y: 0 },

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { About } from "./components/About.jsx";
+import { BorderGlowSystem } from "./components/BorderGlowSystem.jsx";
 import { Contact } from "./components/Contact.jsx";
 import { Hero } from "./components/Hero.jsx";
 import { Projects } from "./components/Projects.jsx";
@@ -60,6 +61,7 @@ export function App() {
 
   return (
     <>
+      <BorderGlowSystem />
       <motion.div className="scroll-progress" style={{ scaleX: progress }} aria-hidden="true" />
       <Hero />
       <main>

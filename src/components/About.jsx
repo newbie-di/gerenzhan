@@ -18,17 +18,18 @@ export function About() {
         <div className="about__grid">
           <motion.figure
             className="about__portrait"
+            data-border-glow="box"
             initial={{ opacity: 0, scale: 0.97 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, amount: 0.35 }}
             transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
           >
             <img src={profileVisual} alt="抽象玻璃质感人物视觉，代表 JD 的 AI 创作者身份" />
-            <figcaption>
+            <figcaption data-border-glow="top">
               <span>PORTRAIT / GENERATIVE STUDY</span>
               <span>2026</span>
             </figcaption>
-            <div className="about__status">
+            <div className="about__status" data-border-glow="box">
               <i />
               {profile.status}
             </div>
@@ -43,20 +44,25 @@ export function About() {
           >
             <span className="eyebrow">CURRENTLY / {profile.location}</span>
             <p className="about__lead">{profile.about}</p>
-            <blockquote>“{profile.quote}”</blockquote>
+            <blockquote data-border-glow="left">“{profile.quote}”</blockquote>
 
             <div className="about__details">
-              <div>
+              <div data-border-glow="top-bottom">
                 <MapPin size={17} />
                 <span>位置</span>
                 <strong>{profile.location}</strong>
               </div>
-              <a href={`mailto:${profile.email}`}>
+              <a href={`mailto:${profile.email}`} data-border-glow="bottom">
                 <Mail size={17} />
                 <span>邮箱</span>
                 <strong>{profile.email}</strong>
               </a>
-              <a href={profile.github} target="_blank" rel="noreferrer">
+              <a
+                href={profile.github}
+                data-border-glow="bottom"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <GitFork size={17} />
                 <span>GitHub</span>
                 <strong>{profile.githubLabel}</strong>
@@ -80,6 +86,7 @@ export function About() {
             <motion.div
               key={stat.label}
               className="stat"
+              data-border-glow="box"
               variants={{
                 hidden: { opacity: 0, y: 16 },
                 visible: { opacity: 1, y: 0 },

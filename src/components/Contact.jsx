@@ -26,7 +26,11 @@ export function Contact() {
           </h2>
           <p>我正在寻找 AI 相关的工作机会，也欢迎有趣的项目合作与交流。</p>
 
-          <a className="contact__mail" href={`mailto:${profile.email}`}>
+          <a
+            className="contact__mail"
+            data-border-glow="top-bottom"
+            href={`mailto:${profile.email}`}
+          >
             <span>
               <small>START A CONVERSATION</small>
               {profile.email}
@@ -35,7 +39,7 @@ export function Contact() {
           </a>
         </motion.div>
 
-        <div className="contact__footer">
+        <div className="contact__footer" data-border-glow="top">
           <div className="contact__socials">
             {socialLinks.map((link) => {
               const Icon = icons[link.icon];

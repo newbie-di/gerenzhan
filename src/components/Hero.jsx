@@ -143,6 +143,7 @@ export function Hero() {
             <div className="hero-intro__actions">
               <a
                 className="button button--primary"
+                data-border-glow="box"
                 href="#projects"
                 tabIndex={portalVisible ? 0 : -1}
               >
@@ -150,6 +151,7 @@ export function Hero() {
               </a>
               <a
                 className="button button--ghost"
+                data-border-glow="box"
                 href={`mailto:${profile.email}`}
                 tabIndex={portalVisible ? 0 : -1}
               >
@@ -189,6 +191,7 @@ export function Hero() {
               <a
                 key={project.id}
                 className="hero-project-card"
+                data-border-glow="box"
                 href={`#${project.id}`}
                 tabIndex={spaceVisible ? 0 : -1}
                 style={{ "--card-index": index }}
