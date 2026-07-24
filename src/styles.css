@@ -383,10 +383,16 @@ img {
   color: rgba(245, 247, 252, 0.86);
 }
 
-.navbar__links {
+.navbar__right {
   grid-column: 3;
   display: flex;
   justify-self: end;
+  align-items: center;
+  gap: 20px;
+}
+
+.navbar__links {
+  display: flex;
   align-items: center;
   gap: clamp(20px, 2.1vw, 42px);
 }
@@ -425,15 +431,8 @@ img {
 }
 
 .navbar__actions {
-  position: absolute;
-  top: 19px;
-  right: max(24px, calc((100vw - min(1700px, calc(100vw - 96px))) / 2));
   display: flex;
   gap: 8px;
-}
-
-.navbar__links {
-  padding-right: 74px;
 }
 
 .navbar__menu-button {
@@ -1410,10 +1409,6 @@ img {
     --container: min(1700px, calc(100% - 64px));
   }
 
-  .navbar__actions {
-    right: 32px;
-  }
-
   .navbar__links {
     gap: 22px;
   }
@@ -1458,8 +1453,8 @@ img {
     grid-template-columns: 1fr auto;
   }
 
-  .navbar__actions {
-    right: 24px;
+  .navbar__right {
+    grid-column: 2;
   }
 
   .navbar__menu-button {
@@ -1623,11 +1618,6 @@ img {
 
   .navbar__mark {
     display: none;
-  }
-
-  .navbar__actions {
-    top: 12px;
-    right: 18px;
   }
 
   .icon-button {

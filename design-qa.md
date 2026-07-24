@@ -137,6 +137,53 @@ No actionable P0/P1/P2 differences remain for the requested border interaction.
 
 final result: passed
 
+## July 24 Navigation Control Placement Update
+
+### Comparison Target
+
+- Source visual truth: `/var/folders/n1/g13thyt91vl5hdhg35cj9f6c0000gn/T/codex-clipboard-21463fa1-1b21-498a-a7ec-e9d4d9df8069.png`
+- Normalized source copy: `design-reference/navigation/reference-toggle-position.png`
+- Browser-rendered implementation: `design-reference/navigation/implementation-toggle-after-contact.png`
+- Focused comparison input: `design-reference/navigation/navigation-order-comparison.png`
+- Desktop CSS viewport: `1280 × 720`
+- Source pixels: `840 × 136`
+- Implementation screenshot pixels: `1272 × 716`; focused comparison uses the top-right `840 × 136` region
+- State: Hero running, desktop navigation visible, pause control unpressed
+
+### Findings
+
+- No actionable P0/P1/P2 differences remain for the requested placement change.
+- The source shows the circular pause control visually splitting “优势” and “联系”. The implementation now keeps all five navigation links in one uninterrupted group and places the same pause control immediately after “联系”.
+
+### Required Fidelity Surfaces
+
+- Fonts and typography: existing Manrope navigation labels, weight, size, letter spacing and muted-white treatment are unchanged.
+- Spacing and layout rhythm: the navigation and action controls now share one right-aligned flex group. A `20px` group gap separates “联系” from the circular control, preventing overlap while preserving the existing label rhythm.
+- Colors and visual tokens: the transparent navigation, low-contrast labels, circular line treatment and reactive border glow are unchanged.
+- Image quality and asset fidelity: Hero video, cosmic portal and all generated imagery are unchanged. No new visual asset was required for this positional adjustment.
+- Copy and content: navigation labels and accessible pause/play names are unchanged.
+- Responsiveness and accessibility: at `390 × 844`, the desktop links hide while pause/play and menu controls remain together in a `96px`-wide action group. The page reports `scrollWidth: 382` inside a `390px` viewport. The semantic pause button remains keyboard-accessible and its label changes correctly between “暂停首屏动画” and “播放首屏动画”.
+
+### Primary Interactions Tested
+
+- The desktop order is 首页 → 关于 → 项目 → 优势 → 联系 → 暂停/播放.
+- The pause control changed to the playback state after activation and restored successfully.
+- Mobile keeps the pause/play button beside the menu button.
+- Browser console checks returned no warnings or errors.
+- `npm run build` and `git diff --check` passed.
+
+### Comparison History
+
+#### Navigation pass 1 — P1 action control overlapped the link group
+
+- Finding: an absolutely positioned action container visually occupied the gap between “优势” and “联系”.
+- Fix: grouped the desktop links and action controls inside `navbar__right`, using natural flex order instead of overlay positioning.
+- Post-fix evidence: `implementation-toggle-after-contact.png` and `navigation-order-comparison.png`.
+
+No additional focused region was needed beyond the navigation crop because the requested change is isolated to one header control order; full-page desktop and mobile captures confirmed that surrounding content and responsive behavior did not shift.
+
+final result: passed
+
 ## July 24 Fluid Cursor Update
 
 ### Comparison Target

@@ -45,35 +45,37 @@ export function Navbar({ paused, onTogglePause }) {
           <Sparkles size={18} strokeWidth={1.5} />
         </div>
 
-        <nav className="navbar__links" aria-label="主导航">
-          {navItems.map((item) => (
-            <a key={item.href} href={item.href}>
-              {item.label}
-            </a>
-          ))}
-        </nav>
+        <div className="navbar__right">
+          <nav className="navbar__links" aria-label="主导航">
+            {navItems.map((item) => (
+              <a key={item.href} href={item.href}>
+                {item.label}
+              </a>
+            ))}
+          </nav>
 
-        <div className="navbar__actions">
-          <button
-            className="icon-button navbar__motion-toggle"
-            data-border-glow="box"
-            type="button"
-            onClick={onTogglePause}
-            aria-label={paused ? "播放首屏动画" : "暂停首屏动画"}
-            aria-pressed={paused}
-          >
-            {paused ? <Play size={17} /> : <Pause size={17} />}
-          </button>
-          <button
-            className="icon-button navbar__menu-button"
-            data-border-glow="box"
-            type="button"
-            onClick={() => setMenuOpen((open) => !open)}
-            aria-label={menuOpen ? "关闭导航菜单" : "打开导航菜单"}
-            aria-expanded={menuOpen}
-          >
-            {menuOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
+          <div className="navbar__actions">
+            <button
+              className="icon-button navbar__motion-toggle"
+              data-border-glow="box"
+              type="button"
+              onClick={onTogglePause}
+              aria-label={paused ? "播放首屏动画" : "暂停首屏动画"}
+              aria-pressed={paused}
+            >
+              {paused ? <Play size={17} /> : <Pause size={17} />}
+            </button>
+            <button
+              className="icon-button navbar__menu-button"
+              data-border-glow="box"
+              type="button"
+              onClick={() => setMenuOpen((open) => !open)}
+              aria-label={menuOpen ? "关闭导航菜单" : "打开导航菜单"}
+              aria-expanded={menuOpen}
+            >
+              {menuOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
+          </div>
         </div>
       </div>
 
