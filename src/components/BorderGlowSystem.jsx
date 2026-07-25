@@ -2,25 +2,6 @@ import { useEffect } from "react";
 
 const selector = "[data-border-glow]";
 
-const getEdgeDistance = (mode, x, y, width, height) => {
-  switch (mode) {
-    case "top":
-      return y;
-    case "right":
-      return width - x;
-    case "bottom":
-      return height - y;
-    case "left":
-      return x;
-    case "top-bottom":
-      return Math.min(y, height - y);
-    case "left-right":
-      return Math.min(x, width - x);
-    default:
-      return Math.min(x, y, width - x, height - y);
-  }
-};
-
 export function BorderGlowSystem() {
   useEffect(() => {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -49,20 +30,13 @@ export function BorderGlowSystem() {
       const bounds = activeElement.getBoundingClientRect();
       const x = Math.max(0, Math.min(bounds.width, pointerX - bounds.left));
       const y = Math.max(0, Math.min(bounds.height, pointerY - bounds.top));
-      const mode = activeElement.dataset.borderGlow || "box";
-      const edgeDistance = getEdgeDistance(mode, x, y, bounds.width, bounds.height);
-      const activationDistance = Math.min(
-        78,
-        Math.max(26, Math.min(bounds.width, bounds.height) * 0.18),
-      );
-      const proximity = Math.max(0, Math.min(1, 1 - edgeDistance / activationDistance));
+      const angle =
+        (Math.atan2(y - bounds.height / 2, x - bounds.width / 2) * 180) / Math.PI + 90;
 
       activeElement.style.setProperty("--border-glow-x", `${x}px`);
       activeElement.style.setProperty("--border-glow-y", `${y}px`);
-      activeElement.style.setProperty(
-        "--border-glow-alpha",
-        `${Math.pow(proximity, 0.72)}`,
-      );
+      activeElement.style.setProperty("--border-glow-angle", `${angle}deg`);
+      activeElement.style.setProperty("--border-glow-alpha", "0.86");
     };
 
     const onPointerMove = (event) => {

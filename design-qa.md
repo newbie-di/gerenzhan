@@ -305,3 +305,38 @@ The supplied recording demonstrates an interaction material rather than a portfo
 No actionable P0/P1/P2 differences remain for the requested mouse-movement interaction.
 
 final result: passed
+
+## July 25 Inside-Hover Border Glow Update
+
+### Comparison Target
+
+- Source visual truth: `/var/folders/n1/g13thyt91vl5hdhg35cj9f6c0000gn/T/codex-clipboard-8f0f3612-2ec9-4163-8563-336f021acac4.png`
+- Implementation route: `http://localhost:4173/`
+- Main implementation evidence: `design-reference/border-hover-inside/stats-card-center-hover.png`
+- Large-card evidence: `design-reference/border-hover-inside/project-card-center-hover.png`
+- Nested-frame evidence: `design-reference/border-hover-inside/nested-badge-hover.png`
+- Desktop CSS viewport: `1280 × 720`
+- State: fine pointer positioned well inside a bordered element rather than near its edge
+
+### Findings and Fidelity Surfaces
+
+- No actionable P0/P1/P2 differences remain.
+- Behavior: the pointer no longer needs to approach a border. Entering any registered frame sets the active edge to `0.86` opacity, including when the pointer is near the frame center.
+- Visual treatment: the full perimeter receives a restrained cyan, blue, violet, magenta and warm-white conic edge, while a radial hotspot remains oriented toward the pointer. This keeps the requested flowing color impression without turning every inactive border into neon.
+- Layout, typography, image assets, copy and spacing are unchanged; the interaction is painted in the existing masked pseudo-element and remains outside layout flow.
+- Coverage: browser inspection confirmed `61` existing bordered controls, cards, tags and dividers remain registered.
+- Nested frames: only the nearest bordered element activates. Moving from the project image into its `PROJECT / 01` badge changed the outer frame from `0.86` to `0` and the badge from `0` to `0.86`, preventing double-glow clutter.
+- Exit behavior: moving to an unbordered heading returned the active bordered-element count to `0`.
+- Responsiveness and accessibility: the existing fine-pointer gate remains intact, and both coarse pointers and `prefers-reduced-motion` continue to disable the reactive layer.
+- Browser console checks returned no warnings or errors.
+- `npm run build` and `git diff --check` passed.
+
+### Comparison History
+
+#### Pass 1 — P1 center hover produced no visible edge
+
+- Finding: opacity was calculated from distance to the nearest edge, so a pointer near the center of a large card resolved to zero.
+- Fix: removed edge-distance gating, activated the nearest bordered element for the entire interior hit area, and added a low-noise full-perimeter color layer behind the pointer-oriented hotspot.
+- Post-fix evidence: `stats-card-center-hover.png` and computed state `--border-glow-alpha: 0.86` at the center of the “1000+ / 小时学习” card.
+
+final result: passed
